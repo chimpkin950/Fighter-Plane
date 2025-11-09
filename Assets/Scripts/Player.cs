@@ -19,6 +19,8 @@ public class Player : MonoBehaviour
 
     public GameObject bulletPrefab;
 
+    public GameObject BigBulletPrefab;
+
     void Start()
     {
         playerSpeed = 6f;
@@ -37,9 +39,14 @@ public class Player : MonoBehaviour
     void Shooting()
     {
         //if the player presses the SPACE key, create a projectile
-        if(Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             Instantiate(bulletPrefab, transform.position + new Vector3(0, 1, 0), Quaternion.identity);
+        }
+        //if the player presses the E key, create a Big Bullet
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            Instantiate(BigBulletPrefab, transform.position + new Vector3(0, 2, 0), Quaternion.identity);
         }
     }
 
@@ -60,19 +67,6 @@ public class Player : MonoBehaviour
         {
             transform.position = new Vector3(transform.position.x, transform.position.y * -1, 0);
         }
-        //Player limited bottom of screen
-        if(transform.position.y > 0)
-        {
-            transform.position = new Vector3(transform.position.x, 0, 0);
-        }
-
-        if(transform.position.y < -verticalScreenLimit)
-        {
-            transform.position = new Vector3(transform.position.x, -verticalScreenLimit, 0);
-        }
-    
     }
-
-
 
 }
